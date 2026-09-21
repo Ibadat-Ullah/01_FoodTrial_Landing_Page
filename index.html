@@ -10,7 +10,7 @@
   </head>
   <body>
     <!-- This is Navbar -->
-    <!-- <header> -->
+    <header>
       <nav class="navbar">
         <a href="#" class="logo">
           <img src="./icons/logo.jpeg" alt="FoodTrial" />
@@ -34,10 +34,107 @@
     <!-- This is Hero Section -->
     <main>
       <section class="hero">
-        <div class="hero-content">
-          <h1>Welcome to FoodTrial</h1>
+        <div class="food-carousel" aria-label="Featured food">
+          <div class="food-carousel-track">
+            <article class="food-slide">
+              <img
+                src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1600&q=85"
+                alt="Fresh pizza topped with vegetables"
+              />
+              <div class="hero-content">
+                <h1>Welcome to FoodTrial</h1>
+                <p>Discover and order your favorite food.</p>
+              </div>
+            </article>
 
-          <p>Discover and order your favorite food.</p>
+            <article class="food-slide">
+              <img
+                src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1600&q=85"
+                alt="Juicy cheeseburger with fries"
+              />
+              <div class="hero-content">
+                <h1>Big Flavor, Every Bite</h1>
+                <p>Try something delicious today.</p>
+              </div>
+            </article>
+
+            <article class="food-slide">
+              <img
+                src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1600&q=85"
+                alt="Colorful healthy salad bowl"
+              />
+              <div class="hero-content">
+                <h1>Fresh Looks Good on You</h1>
+                <p>Find bright, wholesome favorites.</p>
+              </div>
+            </article>
+
+            <article class="food-slide">
+              <img
+                src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=1600&q=85"
+                alt="Bowl of creamy pasta"
+              />
+              <div class="hero-content">
+                <h1>Comfort in Every Forkful</h1>
+                <p>Order something warm and satisfying.</p>
+              </div>
+            </article>
+
+            <article class="food-slide">
+              <img
+                src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1600&q=85"
+                alt="Glazed doughnuts with colorful toppings"
+              />
+              <div class="hero-content">
+                <h1>Make Room for Dessert</h1>
+                <p>Finish your order on a sweet note.</p>
+              </div>
+            </article>
+          </div>
+
+          <button
+            class="carousel-control carousel-control-prev"
+            type="button"
+            aria-label="Previous food slide"
+          >
+            &#10094;
+          </button>
+          <button
+            class="carousel-control carousel-control-next"
+            type="button"
+            aria-label="Next food slide"
+          >
+            &#10095;
+          </button>
+
+          <div class="carousel-dots" aria-label="Choose a food slide">
+            <button
+              class="carousel-dot is-active"
+              type="button"
+              aria-label="Show slide 1"
+              aria-current="true"
+            ></button>
+            <button
+              class="carousel-dot"
+              type="button"
+              aria-label="Show slide 2"
+            ></button>
+            <button
+              class="carousel-dot"
+              type="button"
+              aria-label="Show slide 3"
+            ></button>
+            <button
+              class="carousel-dot"
+              type="button"
+              aria-label="Show slide 4"
+            ></button>
+            <button
+              class="carousel-dot"
+              type="button"
+              aria-label="Show slide 5"
+            ></button>
+          </div>
         </div>
       </section>
     </main>
@@ -105,5 +202,95 @@
         </div>
       </div>
     </footer>
+
+    <script>
+      const carousel = document.querySelector(".food-carousel");
+      const track = carousel.querySelector(".food-carousel-track");
+      const slides = [...carousel.querySelectorAll(".food-slide")];
+      const dots = [...carousel.querySelectorAll(".carousel-dot")];
+      const previousButton = carousel.querySelector(".carousel-control-prev");
+      const nextButton = carousel.querySelector(".carousel-control-next");
+      let currentSlide = 0;
+      let direction = 1;
+      let autoplay;
+      let dragStart = 0;
+      let scrollStart = 0;
+      let isDragging = false;
+
+      function showSlide(index, smooth = true) {
+        currentSlide = Math.max(0, Math.min(index, slides.length - 1));
+        track.scrollTo({
+          left: currentSlide * track.clientWidth,
+          behavior: smooth ? "smooth" : "auto",
+        });
+
+        dots.forEach((dot, dotIndex) => {
+          const isActive = dotIndex === currentSlide;
+          dot.classList.toggle("is-active", isActive);
+          dot.toggleAttribute("aria-current", isActive);
+        });
+      }
+
+      function moveAutomatically() {
+        if (currentSlide === slides.length - 1) direction = -1;
+        if (currentSlide === 0) direction = 1;
+        showSlide(currentSlide + direction);
+      }
+
+      function restartAutoplay() {
+        clearInterval(autoplay);
+        autoplay = setInterval(moveAutomatically, 3500);
+      }
+
+      function stopDragging() {
+        if (!isDragging) return;
+        isDragging = false;
+        track.classList.remove("is-dragging");
+        currentSlide = Math.round(track.scrollLeft / track.clientWidth);
+        showSlide(currentSlide);
+        restartAutoplay();
+      }
+
+      track.addEventListener("pointerdown", (event) => {
+        isDragging = true;
+        dragStart = event.clientX;
+        scrollStart = track.scrollLeft;
+        track.classList.add("is-dragging");
+        track.setPointerCapture(event.pointerId);
+        clearInterval(autoplay);
+      });
+
+      track.addEventListener("pointermove", (event) => {
+        if (isDragging)
+          track.scrollLeft = scrollStart - (event.clientX - dragStart);
+      });
+
+      track.addEventListener("pointerup", stopDragging);
+      track.addEventListener("pointercancel", stopDragging);
+      previousButton.addEventListener("click", () => {
+        direction = -1;
+        const previousSlide =
+          (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(previousSlide);
+        restartAutoplay();
+      });
+      nextButton.addEventListener("click", () => {
+        direction = 1;
+        const nextSlide = (currentSlide + 1) % slides.length;
+        showSlide(nextSlide);
+        restartAutoplay();
+      });
+      dots.forEach((dot, index) =>
+        dot.addEventListener("click", () => {
+          direction = index >= currentSlide ? 1 : -1;
+          showSlide(index);
+          restartAutoplay();
+        }),
+      );
+      carousel.addEventListener("mouseenter", () => clearInterval(autoplay));
+      carousel.addEventListener("mouseleave", restartAutoplay);
+      window.addEventListener("resize", () => showSlide(currentSlide, false));
+      restartAutoplay();
+    </script>
   </body>
 </html>

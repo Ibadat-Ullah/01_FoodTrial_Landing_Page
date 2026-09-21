@@ -205,29 +205,20 @@ main {
   overflow: hidden;
 }
 
+.carousel-slide-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .food-carousel-track {
   display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  cursor: grab;
-  touch-action: pan-y;
-}
-
-.food-carousel-track::-webkit-scrollbar {
-  display: none;
-}
-
-.food-carousel-track.is-dragging {
-  cursor: grabbing;
-  scroll-behavior: auto;
-  scroll-snap-type: none;
+  transition: transform 0.5s ease;
 }
 
 .food-slide {
   position: relative;
   flex: 0 0 100%;
-  scroll-snap-align: start;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -269,10 +260,31 @@ main {
   font-size: 18px;
 }
 
+#food-slide-1:checked ~ .food-carousel-track {
+  transform: translateX(0);
+}
+
+#food-slide-2:checked ~ .food-carousel-track {
+  transform: translateX(-100%);
+}
+
+#food-slide-3:checked ~ .food-carousel-track {
+  transform: translateX(-200%);
+}
+
+#food-slide-4:checked ~ .food-carousel-track {
+  transform: translateX(-300%);
+}
+
+#food-slide-5:checked ~ .food-carousel-track {
+  transform: translateX(-400%);
+}
+
 .carousel-control {
   position: absolute;
   top: 50%;
   z-index: 2;
+  display: none;
   width: 42px;
   height: 42px;
   border: 0;
@@ -283,6 +295,9 @@ main {
   line-height: 1;
   cursor: pointer;
   transform: translateY(-50%);
+  align-items: center;
+  justify-content: center;
+  user-select: none;
 }
 
 .carousel-control:hover {
@@ -295,6 +310,19 @@ main {
 
 .carousel-control-next {
   right: 22px;
+}
+
+#food-slide-1:checked ~ .carousel-control-prev-1,
+#food-slide-1:checked ~ .carousel-control-next-1,
+#food-slide-2:checked ~ .carousel-control-prev-2,
+#food-slide-2:checked ~ .carousel-control-next-2,
+#food-slide-3:checked ~ .carousel-control-prev-3,
+#food-slide-3:checked ~ .carousel-control-next-3,
+#food-slide-4:checked ~ .carousel-control-prev-4,
+#food-slide-4:checked ~ .carousel-control-next-4,
+#food-slide-5:checked ~ .carousel-control-prev-5,
+#food-slide-5:checked ~ .carousel-control-next-5 {
+  display: flex;
 }
 
 .carousel-dots {
@@ -317,13 +345,120 @@ main {
   cursor: pointer;
 }
 
-.carousel-dot.is-active {
+.carousel-dot:hover {
   background: var(--white);
+}
+
+#food-slide-1:checked ~ .carousel-dots label[for="food-slide-1"],
+#food-slide-2:checked ~ .carousel-dots label[for="food-slide-2"],
+#food-slide-3:checked ~ .carousel-dots label[for="food-slide-3"],
+#food-slide-4:checked ~ .carousel-dots label[for="food-slide-4"],
+#food-slide-5:checked ~ .carousel-dots label[for="food-slide-5"] {
+  background: var(--white);
+}
+
+.carousel-control:focus-visible,
+.carousel-dot:focus-visible {
+  outline: 3px solid var(--white);
+  outline-offset: 3px;
+}
+
+.menu-section {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 0 20px;
+}
+
+.menu-heading {
+  margin-bottom: 35px;
+  text-align: center;
+}
+
+.section-eyebrow,
+.menu-category {
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.menu-heading h2 {
+  margin: 8px 0 10px;
+  font-size: 34px;
+}
+
+.menu-heading > p:last-child {
+  color: var(--gray);
+  font-size: 16px;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.menu-item {
+  min-height: 235px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: 0 8px 25px rgba(34, 34, 34, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-item-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 14px;
+}
+
+.menu-item h3 {
+  margin-top: 6px;
+  font-size: 20px;
+}
+
+.menu-price {
+  color: var(--primary);
+  font-size: 17px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.menu-item > p {
+  color: var(--gray);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.menu-add {
+  align-self: flex-start;
+  margin-top: auto;
+  padding: 10px 15px;
+  border: 1px solid var(--primary);
+  border-radius: 7px;
+  background: transparent;
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.menu-add:hover {
+  background: var(--primary);
+  color: var(--white);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .food-carousel-track {
-    scroll-behavior: auto;
+    transition: none;
   }
 }
 
@@ -576,6 +711,10 @@ main {
     font-size: 16px;
   }
 
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .footer-container {
     grid-template-columns: 1fr 1fr;
 
@@ -598,6 +737,18 @@ main {
 }
 
 @media (max-width: 480px) {
+  .menu-section {
+    padding-top: 60px;
+  }
+
+  .menu-heading h2 {
+    font-size: 28px;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
   .footer-container {
     grid-template-columns: 1fr;
   }

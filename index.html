@@ -18,7 +18,7 @@
 
         <ul class="nav-links">
           <li><a href="#">Home</a></li>
-          <li><a href="#">Menu</a></li>
+          <li><a href="#menu">Menu</a></li>
           <li><a href="#">Offers</a></li>
           <li><a href="#">About Us</a></li>
         </ul>
@@ -35,6 +35,38 @@
     <main>
       <section class="hero">
         <div class="food-carousel" aria-label="Featured food">
+          <input
+            class="carousel-slide-input"
+            type="radio"
+            name="food-slide"
+            id="food-slide-1"
+            checked
+          />
+          <input
+            class="carousel-slide-input"
+            type="radio"
+            name="food-slide"
+            id="food-slide-2"
+          />
+          <input
+            class="carousel-slide-input"
+            type="radio"
+            name="food-slide"
+            id="food-slide-3"
+          />
+          <input
+            class="carousel-slide-input"
+            type="radio"
+            name="food-slide"
+            id="food-slide-4"
+          />
+          <input
+            class="carousel-slide-input"
+            type="radio"
+            name="food-slide"
+            id="food-slide-5"
+          />
+
           <div class="food-carousel-track">
             <article class="food-slide">
               <img
@@ -92,49 +124,232 @@
             </article>
           </div>
 
-          <button
-            class="carousel-control carousel-control-prev"
-            type="button"
+          <label
+            class="carousel-control carousel-control-prev carousel-control-prev-1"
+            for="food-slide-5"
             aria-label="Previous food slide"
+            role="button"
+            tabindex="0"
           >
             &#10094;
-          </button>
-          <button
-            class="carousel-control carousel-control-next"
-            type="button"
+          </label>
+          <label
+            class="carousel-control carousel-control-next carousel-control-next-1"
+            for="food-slide-2"
             aria-label="Next food slide"
+            role="button"
+            tabindex="0"
           >
             &#10095;
-          </button>
+          </label>
+          <label
+            class="carousel-control carousel-control-prev carousel-control-prev-2"
+            for="food-slide-1"
+            aria-label="Previous food slide"
+            role="button"
+            tabindex="0"
+          >
+            &#10094;
+          </label>
+          <label
+            class="carousel-control carousel-control-next carousel-control-next-2"
+            for="food-slide-3"
+            aria-label="Next food slide"
+            role="button"
+            tabindex="0"
+          >
+            &#10095;
+          </label>
+          <label
+            class="carousel-control carousel-control-prev carousel-control-prev-3"
+            for="food-slide-2"
+            aria-label="Previous food slide"
+            role="button"
+            tabindex="0"
+          >
+            &#10094;
+          </label>
+          <label
+            class="carousel-control carousel-control-next carousel-control-next-3"
+            for="food-slide-4"
+            aria-label="Next food slide"
+            role="button"
+            tabindex="0"
+          >
+            &#10095;
+          </label>
+          <label
+            class="carousel-control carousel-control-prev carousel-control-prev-4"
+            for="food-slide-3"
+            aria-label="Previous food slide"
+            role="button"
+            tabindex="0"
+          >
+            &#10094;
+          </label>
+          <label
+            class="carousel-control carousel-control-next carousel-control-next-4"
+            for="food-slide-5"
+            aria-label="Next food slide"
+            role="button"
+            tabindex="0"
+          >
+            &#10095;
+          </label>
+          <label
+            class="carousel-control carousel-control-prev carousel-control-prev-5"
+            for="food-slide-4"
+            aria-label="Previous food slide"
+            role="button"
+            tabindex="0"
+          >
+            &#10094;
+          </label>
+          <label
+            class="carousel-control carousel-control-next carousel-control-next-5"
+            for="food-slide-1"
+            aria-label="Next food slide"
+            role="button"
+            tabindex="0"
+          >
+            &#10095;
+          </label>
 
           <div class="carousel-dots" aria-label="Choose a food slide">
-            <button
+            <label
               class="carousel-dot is-active"
-              type="button"
+              for="food-slide-1"
               aria-label="Show slide 1"
-              aria-current="true"
-            ></button>
-            <button
+              role="button"
+              tabindex="0"
+            ></label>
+            <label
               class="carousel-dot"
-              type="button"
+              for="food-slide-2"
               aria-label="Show slide 2"
-            ></button>
-            <button
+              role="button"
+              tabindex="0"
+            ></label>
+            <label
               class="carousel-dot"
-              type="button"
+              for="food-slide-3"
               aria-label="Show slide 3"
-            ></button>
-            <button
+              role="button"
+              tabindex="0"
+            ></label>
+            <label
               class="carousel-dot"
-              type="button"
+              for="food-slide-4"
               aria-label="Show slide 4"
-            ></button>
-            <button
+              role="button"
+              tabindex="0"
+            ></label>
+            <label
               class="carousel-dot"
-              type="button"
+              for="food-slide-5"
               aria-label="Show slide 5"
-            ></button>
+              role="button"
+              tabindex="0"
+            ></label>
           </div>
+        </div>
+      </section>
+
+      <section class="menu-section" id="menu">
+        <div class="menu-heading">
+          <p class="section-eyebrow">Our menu</p>
+          <h2>Good food, ready to order</h2>
+          <p>Choose a favorite or try something new from our kitchen.</p>
+        </div>
+
+        <div class="menu-grid">
+          <article class="menu-item">
+            <div class="menu-item-top">
+              <div>
+                <p class="menu-category">Popular</p>
+                <h3>Classic Margherita</h3>
+              </div>
+              <span class="menu-price">$12.99</span>
+            </div>
+            <p>
+              Tomato sauce, fresh mozzarella, basil, and a crisp golden crust.
+            </p>
+            <button class="menu-add" type="button">Add to cart</button>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-item-top">
+              <div>
+                <p class="menu-category">Burgers</p>
+                <h3>FoodTrial Smash</h3>
+              </div>
+              <span class="menu-price">$10.49</span>
+            </div>
+            <p>
+              Seasoned beef, cheddar, crisp lettuce, and house sauce in a
+              toasted bun.
+            </p>
+            <button class="menu-add" type="button">Add to cart</button>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-item-top">
+              <div>
+                <p class="menu-category">Healthy</p>
+                <h3>Garden Bowl</h3>
+              </div>
+              <span class="menu-price">$9.99</span>
+            </div>
+            <p>
+              Crunchy greens, roasted vegetables, avocado, and lemon herb
+              dressing.
+            </p>
+            <button class="menu-add" type="button">Add to cart</button>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-item-top">
+              <div>
+                <p class="menu-category">Pasta</p>
+                <h3>Creamy Alfredo</h3>
+              </div>
+              <span class="menu-price">$11.99</span>
+            </div>
+            <p>
+              Silky parmesan cream sauce, fettuccine, herbs, and cracked black
+              pepper.
+            </p>
+            <button class="menu-add" type="button">Add to cart</button>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-item-top">
+              <div>
+                <p class="menu-category">Sides</p>
+                <h3>Loaded Fries</h3>
+              </div>
+              <span class="menu-price">$6.49</span>
+            </div>
+            <p>
+              Golden fries topped with cheddar, spring onions, and smoky sauce.
+            </p>
+            <button class="menu-add" type="button">Add to cart</button>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-item-top">
+              <div>
+                <p class="menu-category">Dessert</p>
+                <h3>Sweet Finish</h3>
+              </div>
+              <span class="menu-price">$5.99</span>
+            </div>
+            <p>
+              Warm chocolate brownie served with vanilla cream and a little
+              crunch.
+            </p>
+            <button class="menu-add" type="button">Add to cart</button>
+          </article>
         </div>
       </section>
     </main>
@@ -202,95 +417,5 @@
         </div>
       </div>
     </footer>
-
-    <script>
-      const carousel = document.querySelector(".food-carousel");
-      const track = carousel.querySelector(".food-carousel-track");
-      const slides = [...carousel.querySelectorAll(".food-slide")];
-      const dots = [...carousel.querySelectorAll(".carousel-dot")];
-      const previousButton = carousel.querySelector(".carousel-control-prev");
-      const nextButton = carousel.querySelector(".carousel-control-next");
-      let currentSlide = 0;
-      let direction = 1;
-      let autoplay;
-      let dragStart = 0;
-      let scrollStart = 0;
-      let isDragging = false;
-
-      function showSlide(index, smooth = true) {
-        currentSlide = Math.max(0, Math.min(index, slides.length - 1));
-        track.scrollTo({
-          left: currentSlide * track.clientWidth,
-          behavior: smooth ? "smooth" : "auto",
-        });
-
-        dots.forEach((dot, dotIndex) => {
-          const isActive = dotIndex === currentSlide;
-          dot.classList.toggle("is-active", isActive);
-          dot.toggleAttribute("aria-current", isActive);
-        });
-      }
-
-      function moveAutomatically() {
-        if (currentSlide === slides.length - 1) direction = -1;
-        if (currentSlide === 0) direction = 1;
-        showSlide(currentSlide + direction);
-      }
-
-      function restartAutoplay() {
-        clearInterval(autoplay);
-        autoplay = setInterval(moveAutomatically, 3500);
-      }
-
-      function stopDragging() {
-        if (!isDragging) return;
-        isDragging = false;
-        track.classList.remove("is-dragging");
-        currentSlide = Math.round(track.scrollLeft / track.clientWidth);
-        showSlide(currentSlide);
-        restartAutoplay();
-      }
-
-      track.addEventListener("pointerdown", (event) => {
-        isDragging = true;
-        dragStart = event.clientX;
-        scrollStart = track.scrollLeft;
-        track.classList.add("is-dragging");
-        track.setPointerCapture(event.pointerId);
-        clearInterval(autoplay);
-      });
-
-      track.addEventListener("pointermove", (event) => {
-        if (isDragging)
-          track.scrollLeft = scrollStart - (event.clientX - dragStart);
-      });
-
-      track.addEventListener("pointerup", stopDragging);
-      track.addEventListener("pointercancel", stopDragging);
-      previousButton.addEventListener("click", () => {
-        direction = -1;
-        const previousSlide =
-          (currentSlide - 1 + slides.length) % slides.length;
-        showSlide(previousSlide);
-        restartAutoplay();
-      });
-      nextButton.addEventListener("click", () => {
-        direction = 1;
-        const nextSlide = (currentSlide + 1) % slides.length;
-        showSlide(nextSlide);
-        restartAutoplay();
-      });
-      dots.forEach((dot, index) =>
-        dot.addEventListener("click", () => {
-          direction = index >= currentSlide ? 1 : -1;
-          showSlide(index);
-          restartAutoplay();
-        }),
-      );
-      carousel.addEventListener("mouseenter", () => clearInterval(autoplay));
-      carousel.addEventListener("mouseleave", restartAutoplay);
-      window.addEventListener("resize", () => showSlide(currentSlide, false));
-      restartAutoplay();
-    </script>
   </body>
 </html>

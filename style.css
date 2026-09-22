@@ -213,7 +213,8 @@ main {
 
 .food-carousel-track {
   display: flex;
-  transition: transform 0.5s ease;
+  animation: food-carousel-autoplay 12s ease-in-out infinite;
+  will-change: transform;
 }
 
 .food-slide {
@@ -258,6 +259,53 @@ main {
 
 .hero-content p {
   font-size: 18px;
+}
+
+@keyframes food-carousel-autoplay {
+  0%,
+  7% {
+    transform: translateX(0);
+  }
+
+  12%,
+  19% {
+    transform: translateX(-100%);
+  }
+
+  24%,
+  31% {
+    transform: translateX(-200%);
+  }
+
+  36%,
+  43% {
+    transform: translateX(-300%);
+  }
+
+  48%,
+  55% {
+    transform: translateX(-400%);
+  }
+
+  60%,
+  67% {
+    transform: translateX(-300%);
+  }
+
+  72%,
+  79% {
+    transform: translateX(-200%);
+  }
+
+  84%,
+  91% {
+    transform: translateX(-100%);
+  }
+
+  96%,
+  100% {
+    transform: translateX(0);
+  }
 }
 
 #food-slide-1:checked ~ .food-carousel-track {
@@ -332,7 +380,23 @@ main {
   z-index: 2;
   display: flex;
   gap: 8px;
+  width: 77px;
+  height: 9px;
   transform: translateX(-50%);
+}
+
+.carousel-dots::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--white);
+  pointer-events: none;
+  animation: carousel-dot-indicator 12s ease-in-out 0s normal infinite;
 }
 
 .carousel-dot {
@@ -346,21 +410,60 @@ main {
 }
 
 .carousel-dot:hover {
-  background: var(--white);
-}
-
-#food-slide-1:checked ~ .carousel-dots label[for="food-slide-1"],
-#food-slide-2:checked ~ .carousel-dots label[for="food-slide-2"],
-#food-slide-3:checked ~ .carousel-dots label[for="food-slide-3"],
-#food-slide-4:checked ~ .carousel-dots label[for="food-slide-4"],
-#food-slide-5:checked ~ .carousel-dots label[for="food-slide-5"] {
-  background: var(--white);
+  background: rgba(255, 255, 255, 0.55);
 }
 
 .carousel-control:focus-visible,
 .carousel-dot:focus-visible {
   outline: 3px solid var(--white);
   outline-offset: 3px;
+}
+
+@keyframes carousel-dot-indicator {
+  0%,
+  7% {
+    transform: translateX(0);
+  }
+
+  12%,
+  19% {
+    transform: translateX(17px);
+  }
+
+  24%,
+  31% {
+    transform: translateX(34px);
+  }
+
+  36%,
+  43% {
+    transform: translateX(51px);
+  }
+
+  48%,
+  55% {
+    transform: translateX(68px);
+  }
+
+  60%,
+  67% {
+    transform: translateX(51px);
+  }
+
+  72%,
+  79% {
+    transform: translateX(34px);
+  }
+
+  84%,
+  91% {
+    transform: translateX(17px);
+  }
+
+  96%,
+  100% {
+    transform: translateX(0);
+  }
 }
 
 .menu-section {
@@ -400,15 +503,48 @@ main {
   gap: 20px;
 }
 
+.menu-see-all,
+.menu-load-more {
+  display: block;
+  margin: 0 auto 28px;
+  padding: 11px 22px;
+  border: 1px solid var(--primary);
+  border-radius: 7px;
+  background: var(--white);
+  color: var(--primary);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.menu-see-all:hover,
+.menu-load-more:hover {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.menu-load-more {
+  margin: 32px auto 0;
+}
+
 .menu-item {
-  min-height: 235px;
-  padding: 24px;
+  min-height: 390px;
+  padding: 0 24px 24px;
   border: 1px solid var(--border);
   border-radius: 8px;
   background: var(--white);
   box-shadow: 0 8px 25px rgba(34, 34, 34, 0.05);
   display: flex;
   flex-direction: column;
+}
+
+.menu-item-image {
+  width: calc(100% + 48px);
+  height: 165px;
+  margin: 0 -24px 20px;
+  display: block;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
 }
 
 .menu-item-top {
@@ -457,8 +593,9 @@ main {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .food-carousel-track {
-    transition: none;
+  .food-carousel-track,
+  .carousel-dots::before {
+    animation: none;
   }
 }
 
